@@ -1,5 +1,5 @@
 import '../App.css';
-import { Layout, Form, Input, Button, Checkbox, Alert, Image, Row, Col } from 'antd';
+import { Layout, Form, Input, Button, Alert, Image, Row, Col } from 'antd';
 import { useState, useEffect, useRef } from 'react';
 const { Header, Content } = Layout;
 
@@ -123,17 +123,6 @@ const LoginPage = () => {
           >
             <Input.Password />
           </Form.Item>
-
-          {/* <Form.Item
-            name="lembrar"
-            valuePropName="checked"
-            wrapperCol={{
-              offset: 8,
-              span: 16,
-            }}
-          >
-            <Checkbox>Lembrar-me</Checkbox>
-          </Form.Item> */}
 
           {errorAlert}
           {login}

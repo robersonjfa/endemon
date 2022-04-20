@@ -1,78 +1,25 @@
 import '../App.css';
-import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Breadcrumb, Table, Tooltip, Button, Space, Modal } from 'antd';
+import React from 'react';
+import { Layout, Menu, Breadcrumb, Modal } from 'antd';
 import {
   MonitorOutlined,
   ExclamationCircleOutlined,
   InfoCircleOutlined,
   LogoutOutlined,
-  UserOutlined,
-  PlusCircleOutlined,
-  DeleteRowOutlined
+  UserOutlined
 } from '@ant-design/icons';
+import Mapa from './Mapa'
+
 const { confirm } = Modal;
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
-
-
-const CasoPage = () => {
-  const [casos, getCasos] = useState([]);
-
-  const columns = [
-    {
-      title: 'Pessoa',
-      dataIndex: 'codpes',
-      key: 'codpes',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Latitude',
-      dataIndex: 'latcas',
-      key: 'latcas',
-    },
-    {
-      title: 'Longitude',
-      dataIndex: 'lngcas',
-      key: 'lngcas',
-    },
-    {
-      title: 'Ação',
-      key: 'acao',
-      render: (text, record) => (
-        <Space size="middle">
-          <Button
-            icon={<DeleteRowOutlined />}
-            onClick={(e) => { deleteCaso(record.codcas, e); }}
-          />
-        </Space>
-      ),
-    },
-  ];
-
-  const fetchCasos = () => {
-    fetch("https://app-tests-rjfa.herokuapp.com/casos")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-        getCasos(res)
-      })
+const MapaPage = () => {
+  const location = {
+    address: '1600 Amphitheatre Parkway, Mountain View, california.',
+    lat: 37.42216,
+    lng: -122.08427,
   }
-
-  const deleteCaso = (codcas, e) => {
-    e.preventDefault();
-    console.log("teste ..." + codcas);
-    fetch("https://app-tests-rjfa.herokuapp.com/casos/" + codcas, { method: 'DELETE' })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-        getCasos(res)
-      })
-  }
-
-  useEffect(() => {
-    fetchCasos()
-  }, [])
 
   function showExitConfirm() {
     confirm({
@@ -118,10 +65,7 @@ const CasoPage = () => {
             <Breadcrumb.Item>Registro de casos</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <Table columns={columns} dataSource={casos} />
-            <Tooltip title="registrar">
-              <Button type="primary" shape="circle" icon={<PlusCircleOutlined />} size="large" />
-            </Tooltip>
+            <Mapa location={location} zoomLevel={17} />
           </div>
         </Content>
       </Layout>
@@ -129,4 +73,4 @@ const CasoPage = () => {
   );
 };
 
-export default CasoPage;
+export default MapaPage;
