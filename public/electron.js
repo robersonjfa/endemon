@@ -5,14 +5,29 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require("path");
 const isDev = require("electron-is-dev");
 const Usuario = require('./db/usuario');
-require('./express');
+const find = require('find-process');
 
 let mainWindow;
 
-function createWindow() {
+function createMainWindow() {
+
+    var splashWindow = new BrowserWindow({
+        width: 500,
+        height: 300,
+        frame: false,
+        alwaysOnTop: true
+    });
+
+    splashWindow.loadURL(`file://${path.join(__dirname, "/splash.html")}`);
+    splashWindow.center();
+    setTimeout(function () { },
+        2000
+    );
+
     mainWindow = new BrowserWindow({
-        width:
-            900, height: 680, fullscreen: false,
+        width: 900,
+        height: 680,
+        show: false,
         webPreferences: {
             nodeIntegration: false, // is default value after Electron v5
             contextIsolation: true, // protect against prototype pollution
@@ -23,25 +38,52 @@ function createWindow() {
     mainWindow.loadURL(isDev ? "http://localhost:3000" :
         `file://${path.join(__dirname, "../build/index.html")}`);
 
+
     mainWindow.on("closed", () => (mainWindow = null));
     //Menu.setApplicationMenu(null);
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
+
+    // setTimeout(function () {
+    //     splashWindow.close();
+    //     mainWindow.show();
+    // }, 5000);
+
+    mainWindow.webContents.once('did-finish-load', function () {
+        mainWindow.show();
+        splashWindow.close();
+    });
 }
 
-app.on("ready", createWindow);
+app.on("ready", createMainWindow);
 
 app.on("window-all-closed", () => {
+    // find('name', 'cross-env', true)
+    //     .then(function (list) {
+    //         console.log(list);
+    //         // if (list[0] != null) {
+    //         //     process.kill(list[0].pid, 'SIGHUP');
+    //         // }
+    //     });
     if (process.platform !== "darwin") {
-        app.quit();
+        app.exit(0)
     }
 });
 
 app.on("activate", () => {
     if (mainWindow === null) {
-        createWindow();
+        createMainWindow();
     }
 });
 
+
+ipcMain.on("toMain", (event, args) => {
+    console.log(args);
+    if (args.funcao === "login")
+        doLogin(args.usuario, args.senha);
+
+    if (args.funcao === "exit")
+        app.exit(0);
+});
 
 function doLogin(usuario, senha) {
     Usuario.validaLogin(usuario, senha).then(resposta => {
@@ -52,8 +94,3 @@ function doLogin(usuario, senha) {
     });
 }
 
-ipcMain.on("toMain", (event, args) => {
-    console.log(args);
-    if (args.funcao === "login")
-        doLogin(args.usuario, args.senha);
-});

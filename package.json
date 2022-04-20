@@ -18,6 +18,7 @@
     "electron-builder": "^22.14.13",
     "electron-is-dev": "^2.0.0",
     "express": "^4.17.3",
+    "find-process": "^1.4.7",
     "fs": "^0.0.1-security",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
