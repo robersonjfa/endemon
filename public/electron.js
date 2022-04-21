@@ -20,9 +20,9 @@ function createMainWindow() {
 
     splashWindow.loadURL(`file://${path.join(__dirname, "/splash.html")}`);
     splashWindow.center();
-    setTimeout(function () { },
-        2000
-    );
+    // setTimeout(function () { },
+    //     2000
+    // );
 
     mainWindow = new BrowserWindow({
         width: 900,

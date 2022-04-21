@@ -6,7 +6,7 @@ import MapaPage from './pages/MapaPage';
 
 function App() {
   return (
-    MapaPage()
+    CasoPage()
   );
 }
 

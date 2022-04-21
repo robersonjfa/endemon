@@ -11,11 +11,23 @@ const LoginPage = () => {
   const [success, setSuccess] = useState();
   const iusuario = useRef(null);
 
-  const doLoginApi = async () => {
-    const res = await fetch("http://localhost/login");
-    const resposta = await res.json();
-    setSuccess(resposta);
-  };
+  const validaLogin = () => {
+    fetch("http://localhost:4000/usuario/validalogin",
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ login: usuario, senha: senha })
+      }
+    ).then((res) => res.json()).then((res) => {
+      if (res.length === 0) {
+        setSuccess(false);
+        setError(true)
+      } else {
+        setSuccess(true);
+        setError(false);
+      }
+    })
+  }
 
   const errorAlert = error ? <Row>
     <Col span="8"></Col>
@@ -36,17 +48,17 @@ const LoginPage = () => {
   };
 
   const processaLogin = () => {
-    window.api.send("toMain", { funcao: "login", usuario: usuario, senha: senha });
-    window.api.receive("fromMain", (resposta) => {
-      if (resposta) {
-        setSuccess(true);
-        setError(false);
-      } else {
-        setSuccess(false);
-        setError(true);
-      }
-    });
-    //doLoginApi(usuario, senha);
+    // window.api.send("toMain", { funcao: "login", usuario: usuario, senha: senha });
+    // window.api.receive("fromMain", (resposta) => {
+    //   if (resposta) {
+    //     setSuccess(true);
+    //     setError(false);
+    //   } else {
+    //     setSuccess(false);
+    //     setError(true);
+    //   }
+    // });
+    validaLogin();
   };
 
   const salvaUsuario = (e) => {
