@@ -13,6 +13,8 @@ jobs:
     - name: install dependencies
       run: npm install
     - name: build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run build
 
   build_on_mac:
@@ -26,6 +28,8 @@ jobs:
     - name: install dependencies
       run: npm install
     - name: build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run build
       
   build_on_win:
@@ -34,9 +38,10 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@master
       with:
-        node-version: 16
-        github_token: ${{ secrets.github_token }}
+        node-version: 16        
     - name: install dependencies
       run: npm install
     - name: build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run build
