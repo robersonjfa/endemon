@@ -3,6 +3,7 @@ on: [push, pull_request]
 
 env:
   CI: false
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build_on_linux:
@@ -17,7 +18,7 @@ jobs:
       run: npm install
     - name: build
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
       run: npm run build
 
   build_on_mac:
