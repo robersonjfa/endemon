@@ -13,7 +13,7 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^4.19.5", 
+    "antd": "^4.19.5",
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
     "electron-is-dev": "^2.0.0",
@@ -43,11 +43,16 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
-    "electron-build": "electron-builder --publish always",
+    "electron-build": "electron-builder",
     "release": "npm run build && electron-builder --linux --win --mac --x64 --ia32 --publish never",
-    "build": "npm run react-build && npm run electron-build",
+    "build": "npm run react-build && npm run electron-build -p always",
     "start": "concurrently -k \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron . \"",
     "lint": "eslint \"**/*.{j,t}s\""
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "Roberson Aves",
+    "repo": "https://github.com/robersonjfa/endemon.git"
   },
   "eslintConfig": {
     "extends": [
