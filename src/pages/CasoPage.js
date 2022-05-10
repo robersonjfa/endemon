@@ -20,7 +20,7 @@ const CasoPage = () => {
       title: 'Pessoa',
       dataIndex: 'codpes',
       key: 'codpes',
-      render: text => <a>{text}</a>,
+      render: text => <a href="/pessoa">{text}</a>,
     },
     {
       title: 'Latitude',

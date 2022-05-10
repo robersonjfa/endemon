@@ -1,7 +1,7 @@
 import { React, } from "react"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import './App.css';
-import { Layout, Breadcrumb, Menu, Modal } from 'antd';
+import { Layout, Menu, Modal } from 'antd';
 import LoginPage from './pages/LoginPage';
 import PrincipalPage from './pages/PrincipalPage';
 import CasoPage from './pages/CasoPage';
@@ -35,36 +35,36 @@ const App = () => {
     });
   }
 
-  // rotas do breadcrumb
-  const routes = [
-    {
-      path: '/',
-      breadcrumbName: 'home',
-    },
-    {
-      path: '/',
-      breadcrumbName: 'Monitoramento',
-      children: [
-        {
-          path: '/casos',
-          breadcrumbName: 'Registrar Caso',
-        },
-        {
-          path: '/mapa',
-          breadcrumbName: 'Acompanhar Mapa',
-        }
-      ],
-    }
-  ];
+  // // rotas do breadcrumb
+  // const routes = [
+  //   {
+  //     path: '/',
+  //     breadcrumbName: 'home',
+  //   },
+  //   {
+  //     path: '/',
+  //     breadcrumbName: 'Monitoramento',
+  //     children: [
+  //       {
+  //         path: '/casos',
+  //         breadcrumbName: 'Registrar Caso',
+  //       },
+  //       {
+  //         path: '/mapa',
+  //         breadcrumbName: 'Acompanhar Mapa',
+  //       }
+  //     ],
+  //   }
+  // ];
 
-  function itemRender(route, params, routes, paths) {
-    const last = routes.indexOf(route) === routes.length - 1;
-    return last ? (
-      <span>{route.breadcrumbName}</span>
-    ) : (
-      <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
-    );
-  }
+  // function itemRender(route, params, routes, paths) {
+  //   const last = routes.indexOf(route) === routes.length - 1;
+  //   return last ? (
+  //     <span>{route.breadcrumbName}</span>
+  //   ) : (
+  //     <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+  //   );
+  // }
 
   return (
     <Router>
