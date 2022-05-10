@@ -9,12 +9,12 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 16
-        github_token: ${{ secrets.github_token }}
     - name: install dependencies
       run: npm install
     - name: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CI: false
       run: npm run build
 
   build_on_mac:
@@ -24,12 +24,12 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 16
-        github_token: ${{ secrets.github_token }}
     - name: install dependencies
       run: npm install
     - name: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CI: false
       run: npm run build
       
   build_on_win:
@@ -44,4 +44,5 @@ jobs:
     - name: build
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CI: false
       run: npm run build
