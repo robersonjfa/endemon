@@ -21,7 +21,6 @@ const { confirm } = Modal;
 
 const App = () => {
 
-
   // sair
   function showExitConfirm() {
     confirm({
