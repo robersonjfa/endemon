@@ -1,7 +1,7 @@
 const PrincipalPage = () => {
   return (
-    <div>
-      Janela Principal
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <img alt="logo" src="./assets/logo.png"/>
     </div>
   );
 };
