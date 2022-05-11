@@ -6,6 +6,7 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 const Usuario = require('./db/usuario');
 
+
 let mainWindow;
 
 function createMainWindow() {
@@ -35,7 +36,7 @@ function createMainWindow() {
         }
     });
     mainWindow.loadURL(isDev ? "http://localhost:3000" :
-        `file://${path.join(__dirname, "../build/index.html")}`);
+        `file://${path.join(__dirname, "/../build/index.html")}`);
 
 
     mainWindow.on("closed", () => (mainWindow = null));

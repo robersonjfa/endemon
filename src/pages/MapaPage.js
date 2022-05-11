@@ -3,7 +3,7 @@ import Mapa from './Mapa';
 
 const MapaPage = () => {
   return (
-    <Mapa />
+    <div>teste</div>
   );
 };
 

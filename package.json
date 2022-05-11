@@ -3,7 +3,7 @@
   "description": "Monitor de Endemias - Dengue",
   "author": "Roberson Alves <robersonfa@gmail.com>",
   "build": {
-    "appId": "br.edu.unoesc.endemon",
+    "appId": "br.edu.unoesc.endemon",   
     "linux": {
       "target": [
         "AppImage",
@@ -12,7 +12,9 @@
     },
     "publish": [
       {
-        "provider": "github"
+        "provider": "github",
+        "owner": "endemon",
+        "repo": "endemon"
       }
     ]
   },
@@ -38,6 +40,7 @@
     "react-scripts": "5.0.0",
     "sequelize": "^6.18.0",
     "sqlite3": "^5.0.2",
+    "typescript": "^4.6.4",
     "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.18"
@@ -46,7 +49,7 @@
     "electron": "^18.0.1",
     "electron-builder": "^22.14.13"
   },
-  "main": "public/electron.js",
+  "main": "./public/electron.js",
   "homepage": "./",
   "scripts": {
     "react-start": "react-scripts start",
@@ -55,7 +58,7 @@
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
     "release": "npm run build && electron-builder --linux --win --mac --x64 --ia32 --publish never",
-    "build": "npm run react-build && npm run electron-build",
+    "build": "npm run react-build && npm run electron-build -- -p never",
     "publish": "npm run react-build && npm run electron-build -- -p always",
     "start": "concurrently -k \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron . \"",
     "lint": "eslint \"**/*.{j,t}s\""
