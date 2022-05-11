@@ -12,9 +12,7 @@
     },
     "publish": [
       {
-        "provider": "github",
-        "owner": "endemon",
-        "repo": "endemon"
+        "provider": "github"
       }
     ]
   },
