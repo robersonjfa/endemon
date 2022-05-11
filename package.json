@@ -4,6 +4,12 @@
   "author": "Roberson Alves",
   "build": {
     "appId": "br.edu.unoesc.endemon",
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
     "publish": [
       {
         "provider": "github"
