@@ -3,7 +3,12 @@
   "description": "Monitor de Endemias - Dengue",
   "author": "Roberson Alves",
   "build": {
-    "appId": "br.edu.unoesc.endemon"
+    "appId": "br.edu.unoesc.endemon",
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ]
   },
   "version": "0.1.0",
   "private": true,
@@ -46,6 +51,7 @@
     "electron-build": "electron-builder",
     "release": "npm run build && electron-builder --linux --win --mac --x64 --ia32 --publish never",
     "build": "npm run react-build && npm run electron-build",
+    "publish": "npm run react-build && npm run electron-build -- -p always",
     "start": "concurrently -k \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron . \"",
     "lint": "eslint \"**/*.{j,t}s\""
   },

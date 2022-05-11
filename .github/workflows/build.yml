@@ -1,5 +1,5 @@
 name: Build
-on: [push, pull_request]
+on: [push]
 
 env:
   CI: false
@@ -16,7 +16,7 @@ jobs:
     - name: install dependencies
       run: npm install
     - name: build        
-      run: npm run build
+      run: npm run publish
 
   build_on_mac:
     runs-on: macos-latest
@@ -28,7 +28,7 @@ jobs:
     - name: install dependencies
       run: npm install
     - name: build
-      run: npm run build
+      run: npm run publish
       
   build_on_win:
     runs-on: windows-latest
@@ -40,4 +40,4 @@ jobs:
     - name: install dependencies
       run: npm install
     - name: build
-      run: npm run build
+      run: npm run publish
