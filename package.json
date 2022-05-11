@@ -43,16 +43,11 @@
     "react-build": "react-scripts build",
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
-    "electron-build": "electron-builder build -p always",
+    "electron-build": "electron-builder",
     "release": "npm run build && electron-builder --linux --win --mac --x64 --ia32 --publish never",
     "build": "npm run react-build && npm run electron-build",
     "start": "concurrently -k \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron . \"",
     "lint": "eslint \"**/*.{j,t}s\""
-  },
-  "publish": {
-    "provider": "github",
-    "owner": "Roberson Aves",
-    "repo": "https://github.com/robersonjfa/endemon.git"
   },
   "eslintConfig": {
     "extends": [
