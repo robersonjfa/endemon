@@ -1,7 +1,7 @@
 {
   "name": "endemon",
   "description": "Monitor de Endemias - Dengue",
-  "author": "Roberson Alves",
+  "author": "Roberson Alves <robersonfa@gmail.com>",
   "build": {
     "appId": "br.edu.unoesc.endemon",
     "linux": {
