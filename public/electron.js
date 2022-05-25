@@ -40,7 +40,7 @@ function createMainWindow() {
 
 
     mainWindow.on("closed", () => (mainWindow = null));
-    //Menu.setApplicationMenu(null);
+    Menu.setApplicationMenu(null);
     //mainWindow.webContents.openDevTools();
 
     // setTimeout(function () {
